@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piñateria</title>
+  <link rel="shortcut icon" type="image/png" href="./Source/Imagenes/Logos/LogoPrincipal.png">
+  <link rel="stylesheet" href="css/piñateria.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="logo">
+      <a href="index.html"><img src="./Source/Imagenes/Logos/Logo2.jpeg" alt="Logo de la marca"></a>
+    </div>
+    <nav>
+
+      <ul class="nav-links">
+        <div class="search-container">
+          <input id="searchbar" onkeyup="search_categoria()" type="text" name="search" placeholder="Buscar Artículo"
+            class="search-input">
+        </div>
+        <li><a href="Papeleria.html">Papeleria</a></li>
+        <li><a href="Piñateria.html">Piñateria</a></li>
+        <li><a href="FechasEspeciales.html">Fechas especiales</a></li>
+        <li class="icon_header"><a href="./"><img class="icon_header" src="./Souce/Imagenes/instagam_109863.png"
+              alt=""></a></li>
+        <li class="icon_header"><a href="https://api.whatsapp.com/send/?phone=573043277960"><img class="icon_header"
+              src="./Souce/Imagenes/whatsapp_109861.png" alt=""></a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="slider">
+      <div class="slide active">
+        <img src="./Source/Imagenes/Logos/Piñateria1.jpg" alt="Imagen 1">
+      </div>
+      <div class="slide">
+        <img src="./Source/Imagenes/Logos/Piñateria3.jpg" alt="Imagen 2">
+      </div>
+      <div class="slide">
+        <img src="./Source/Imagenes/Logos/Piñateria2.jpg" alt="Imagen 3">
+      </div>
+    </div>
+    <div class="titulo-slider">
+      <h2>PIÑATERIA</h2>
+      <p>¡Bienvenido a nuestra tienda en línea. Aquí encontrarás una amplia variedad de productos para hacer tus fiestas
+        más divertidas y coloridas. ¡Explora nuestros productos y haz tu pedido ahora!</p>
+    </div>
+  </main>
+
+  <!-- <h1 id="titulo" class="titulo">NFT</h1> -->
+  <p class="TituloProducto">Nuestros productos</p>
+  <button id="boton-carrito">
+    <p class="carritoicon">🛒</p>
+    <i class="fas fa-shopping-cart"></i>
+    <span id="contadorCarrito" class="contadorCarrito">0</span>
+  </button>
+
+  <main id="contenedor-productos"></main>
+
+  <!-- <input type="number" min = 0> -->
+
+  <div class="modal-contenedor">
+    <div class="modal-carrito">
+      <h3>Tus productos</h3>
+      <button id="carritoCerrar">x<i class="fas fa-times-circle"></i></button>
+      <div id="carrito-contenedor">
+      </div>
+
+      <p class="precioProducto">Precio total: $<span id="precioTotal">0</span></p>
+      <button id="vaciar-carrito" class="boton-agregar2">Vaciar carrito</button>
+      <button id="compra2" class="boton-agregar2">Comprar</button>
+    </div>
+
+  </div>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h2>Contacto</h2>
+          <p>Teléfono: 304 327 7960</p>
+          <p>Dirección: Cucúta - Norte de Santander</p>
+        </div>
+        <div class="col">
+          <h2>Nuestros canales</h2>
+          <ul>
+            <a href="https://www.instagram.com/detalles.milau/?igshid=YmMyMTA2M2Y%3D"><img class="instagram"
+                src="./Source/Imagenes/Logos/instagam_109863.png"></a>
+            <a href="https://wa.link/oc1x8k"><img class="whatsapp"
+                src="./Source/Imagenes/Logos/whatsapp_109861.png"></a>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/Piñateria.js"></script>
+  <script src="./js/modal.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="./js/animacion.js"></script>
+  
+  <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script type="text/javascript">
+  emailjs.init('grjY7T3w-vjlUWpAI')
+</script>
+  </header>
+</body>
+
+</html>
