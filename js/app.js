@@ -32,7 +32,7 @@ compra2.addEventListener('click', () => {
     };
 
     // Enviar el correo utilizando EmailJS
-    emailjs.send('service_ja9mpkr', 'template_abhxhaq', templateParams)
+    emailjs.send('service_ja9mpkr', 'template_yn2fv6t', templateParams)
       .then((response) => {
         console.log('Correo enviado exitosamente', response);
         vaciarCarrito();
@@ -48,7 +48,15 @@ compra2.addEventListener('click', () => {
   actualizarCarrito();
 });
 
-
+compra2.addEventListener('click', () => {
+  if (carrito.length > 0) {
+    // Redirect to the desired HTML page
+    window.location.href = 'Formulario.html';
+  } else {
+    alert("El carrito está vacío. No se puede procesar la compra.");
+  }
+  actualizarCarrito();
+});
 
 stockProductos.forEach((producto) => {
   const div = document.createElement('div');
@@ -74,6 +82,7 @@ const cargarCarrito = () => {
   const carritoString = localStorage.getItem('carrito');
   carrito = JSON.parse(carritoString) ?? [];
 };
+
 const inicializarCarrito = () => {
   cargarCarrito();
   actualizarCarrito();
@@ -138,9 +147,9 @@ const actualizarCarrito = () => {
       const div = document.createElement('div');
       div.className = 'productoEnCarrito';
       div.innerHTML = `
-        <p>${prod.nombre}</p>
-        <p>Precio: $ ${prod.precio.toLocaleString('es-CO')} COP</p>
-        <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
+        <p name="producto">${prod.nombre}</p>
+        <p name="precio">Precio: $ ${prod.precio.toLocaleString('es-CO')} COP</p>
+        <p name="cantidad">Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
       <div class="botones-carrito">
         <button onclick="eliminarDelCarrito(${prod.id})" class="boton-eliminar">-<i class="fas fa-trash-alt"></i></button>
         <button onclick="agregarAlCarrito(${prod.id})" class="boton-mas">+<i class="fas fa-shopping-cart"></i></button>
@@ -178,9 +187,9 @@ const actualizarCarrito = () => {
         div.classList.add('producto');
         div.innerHTML = `
           <img src=${producto.img} alt="">
-          <h3>${producto.nombre}</h3>
+          <h3 name="producto">${producto.nombre}</h3>
           <p>${producto.desc}</p>
-          <p class="precioProducto">Precio: $ ${producto.precio.toLocaleString('es-CO')} ${producto.peso}</p>
+          <p class="precioProducto" name="precio">Precio: $ ${producto.precio.toLocaleString('es-CO')} ${producto.peso}</p>
           <button id="agregar${producto.id}" class="boton-agregar">Agregar <i class="fas fa-shopping-cart"></i></button>
         `;
         contenedorProductos.appendChild(div);
@@ -208,6 +217,4 @@ const actualizarCarrito = () => {
     mostrarResultadoBusqueda(resultados);
   });
 
-  
-  
-  
+ 

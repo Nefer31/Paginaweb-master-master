@@ -21,9 +21,7 @@ body {
   height: 85px;
   padding: 5px 10%;
   width: 100%;
-  top: auto;
-  z-index: 9999;
-  position: fixed;
+  
 
 }
 .header .logo {
@@ -406,4 +404,57 @@ footer ul li a:hover {
 
 .slide.active {
   opacity: 1;
+}
+
+/* formulario*/
+
+.formulario {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: #f2f2f2;
+}
+
+#form {
+  width: 700px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.celdas {
+  display: grid;
+  gap: 10px;
+}
+
+.field {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 10px;
+  align-items: center;
+  margin: 10px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+#button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
 }
