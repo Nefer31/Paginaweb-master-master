@@ -69,31 +69,7 @@ compra2.addEventListener('click', () => {
   actualizarCarrito();
 });*/
 
-compra2.addEventListener('click', () => {
-  const compra2 = document.getElementById('compra2');
-compra2.addEventListener('click', () => {
-  const productosCarrito = obtenerProductosCarrito();
 
-  if (productosCarrito.length > 0) {
-    const mensaje = generarMensaje(productosCarrito);
-    const whatsappURL = `https://api.whatsapp.com/send?text=${encodeURIComponent(mensaje)}`;
-    window.open(whatsappURL);
-  } else {
-    alert("El carrito está vacío. No se puede procesar la compra.");
-  }
-
-  actualizarCarrito();
-});
-});
-
-function generarMensaje(productosCarrito) {
-  let mensaje = '¡Hola! Quiero realizar la siguiente compra:\n\n';
-  productosCarrito.forEach((producto) => {
-    mensaje += `- ${producto.nombre}\n`;
-  });
-  mensaje += '\n¡Gracias!';
-  return mensaje;
-}
 
 stockProductos.forEach((producto) => {
   const div = document.createElement('div');
@@ -184,10 +160,16 @@ const actualizarCarrito = () => {
       const div = document.createElement('div');
       div.className = 'productoEnCarrito';
       div.innerHTML = `
+
+      <div>
         <p name="producto">${prod.nombre}</p>
-        <p name="precio">Precio: $ ${prod.precio.toLocaleString('es-CO')} COP</p>
-        <p name="cantidad">Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
+      </div>
+      <div>
+        <p name="precio">$${prod.precio.toLocaleString('es-CO')}</p>
+      </div>
+      
       <div class="botones-carrito">
+      <p name="cantidad"><span id="cantidad">${prod.cantidad}</span></p>
         <button onclick="eliminarDelCarrito(${prod.id})" class="boton-eliminar">-<i class="fas fa-trash-alt"></i></button>
         <button onclick="agregarAlCarrito(${prod.id})" class="boton-mas">+<i class="fas fa-shopping-cart"></i></button>
       </div>

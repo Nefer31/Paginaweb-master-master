@@ -281,7 +281,14 @@ img {
   margin-top: 0;
   text-align: center;
 }
+.tabla {
+  display: flex;
+}
 
+.tabla div {
+  flex: 1;
+  text-align: center;
+}
 .modal-carrito #carritoCerrar {
   position: absolute;
   top: 6px;
