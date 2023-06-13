@@ -22,7 +22,7 @@ body {
     width: 100%;
     top: auto;
     z-index: 9999;
-    
+    position: fixed;
 }
 
 .header .logo {
