@@ -18,37 +18,48 @@ botonVaciar.addEventListener('click', () => {
 
 compra2.addEventListener('click', () => {
   if (carrito.length > 0) {
-    // Obtener la información de los productos y el precio total
-    const productos = carrito.map((prod) => {
-      return `${prod.nombre}: ${prod.cantidad} unidad(es) - $${prod.precio}`;
-    }).join('\n');
-    const total = carrito.reduce((acc, prod) => acc + prod.cantidad * prod.precio, 0);
+    const nombreCompleto = prompt('Ingrese su nombre completo:');
+    const numeroContacto = prompt('Ingrese su número de contacto:');
 
-    // Preparar los parámetros para enviar el correo
-    const templateParams = {
-      to_name: 'Destinatario',
-      from_name: 'Nefer',
-      message: `Productos:\n${productos}\n\nTotal: $${total}`,
-    };
+    if (nombreCompleto && numeroContacto) {
+      const confirmarCompra = confirm('¿Está seguro de realizar la compra?');
 
-    // Enviar el correo utilizando EmailJS
-    emailjs.send('service_ja9mpkr', 'template_yn2fv6t', templateParams)
-      .then((response) => {
-        console.log('Correo enviado exitosamente', response);
-        vaciarCarrito();
-        alert('El correo ha sido enviado exitosamente.');
-      })
-      .catch((error) => {
-        console.error('Error al enviar el correo', error);
-        alert('Ocurrió un error al enviar el correo. Por favor, inténtalo nuevamente.');
-      });
+      if (confirmarCompra) {
+        const productos = carrito.map((prod) => {
+          return `${prod.nombre}: ${prod.cantidad} unidad(es) - $${prod.precio}`;
+        }).join('\n');
+        const total = carrito.reduce((acc, prod) => acc + prod.cantidad * prod.precio, 0);
+
+        const templateParams = {
+          to_name: nombreCompleto,
+          from_name: 'Nefer',
+          message: `Productos:\n${productos}\n\nTotal: $${total}\n\nNombre completo: ${nombreCompleto}\nNúmero de contacto: ${numeroContacto}`,
+        };
+
+        emailjs.send('service_ja9mpkr', 'template_yn2fv6t', templateParams)
+          .then((response) => {
+            console.log('Correo enviado exitosamente', response);
+            vaciarCarrito();
+            alert('El correo ha sido enviado exitosamente.');
+          })
+          .catch((error) => {
+            console.error('Error al enviar el correo', error);
+            alert('Ocurrió un error al enviar el correo. Por favor, inténtalo nuevamente.');
+          });
+      } else {
+        alert('La compra ha sido cancelada.');
+      }
+    } else {
+      alert('Por favor, ingrese su nombre completo y número de contacto.');
+    }
   } else {
     alert("El carrito está vacío. No se puede procesar la compra.");
   }
   actualizarCarrito();
 });
 
-compra2.addEventListener('click', () => {
+
+/*compra2.addEventListener('click', () => {
   if (carrito.length > 0) {
     // Redirect to the desired HTML page
     window.location.href = 'Formulario.html';
@@ -56,7 +67,33 @@ compra2.addEventListener('click', () => {
     alert("El carrito está vacío. No se puede procesar la compra.");
   }
   actualizarCarrito();
+});*/
+
+compra2.addEventListener('click', () => {
+  const compra2 = document.getElementById('compra2');
+compra2.addEventListener('click', () => {
+  const productosCarrito = obtenerProductosCarrito();
+
+  if (productosCarrito.length > 0) {
+    const mensaje = generarMensaje(productosCarrito);
+    const whatsappURL = `https://api.whatsapp.com/send?text=${encodeURIComponent(mensaje)}`;
+    window.open(whatsappURL);
+  } else {
+    alert("El carrito está vacío. No se puede procesar la compra.");
+  }
+
+  actualizarCarrito();
 });
+});
+
+function generarMensaje(productosCarrito) {
+  let mensaje = '¡Hola! Quiero realizar la siguiente compra:\n\n';
+  productosCarrito.forEach((producto) => {
+    mensaje += `- ${producto.nombre}\n`;
+  });
+  mensaje += '\n¡Gracias!';
+  return mensaje;
+}
 
 stockProductos.forEach((producto) => {
   const div = document.createElement('div');

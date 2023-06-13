@@ -122,5 +122,6 @@ let stockProductos = [
     "img": "./Source/imagenes/Piñateria/Globos4.jpg"
   },
   
+  
 ]
 
